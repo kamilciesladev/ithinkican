@@ -1,0 +1,219 @@
+---
+// Figma asset URLs (valid for 7 days)
+const imgCharacter = "https://www.figma.com/api/mcp/asset/f18aee8f-d043-45b4-8a8f-4de8e1c19df6";
+const imgLogo      = "https://www.figma.com/api/mcp/asset/0e62fcd9-23f0-4519-963a-9d71e5b5ea76";
+const imgHero      = "https://www.figma.com/api/mcp/asset/9345afac-4d0d-4fc5-97be-51b92f89517f";
+const imgBranding  = "https://www.figma.com/api/mcp/asset/602dddbc-a5b2-4fa0-8cb7-b20b6165efa4";
+---
+
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>On Da Radę</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="page">
+
+      <!-- ─── Header ─────────────────────────────────────────────── -->
+      <header class="header">
+        <img class="logo" src={imgLogo} alt="On Da Radę — logo" />
+        <nav class="nav">
+          <a href="#kampanii">O kampanii</a>
+          <a href="#uwazac">Na co uważać</a>
+          <a href="#przyklady">Dobre przykłady</a>
+          <a href="#materialy">Materiały</a>
+          <a href="#zrodla">Źródła</a>
+        </nav>
+      </header>
+
+      <!-- ─── Hero ───────────────────────────────────────────────── -->
+      <section class="hero">
+        <!-- left: father + baby character -->
+        <img class="hero__character" src={imgCharacter} alt="Tata z dzieckiem" />
+
+        <!-- background: "On Da Radę" watercolour branding vector -->
+        <img class="hero__branding" src={imgBranding} alt="" aria-hidden="true" />
+
+        <!-- centre: main campaign photo -->
+        <img class="hero__image" src={imgHero} alt="Kampania On Da Radę" />
+
+        <!-- CTA buttons sit below the campaign photo -->
+        <div class="hero__buttons">
+          <a href="#ulotka" class="btn btn--pink">ZOBACZ ULOTKĘ</a>
+          <a href="#spoty"  class="btn btn--blue">OBEJRZYJ SPOTY</a>
+        </div>
+      </section>
+
+      <!-- ─── Pink content band ──────────────────────────────────── -->
+      <section class="content-band" aria-label="Treść kampanii">
+        <!-- future content goes here -->
+      </section>
+
+    </div>
+  </body>
+</html>
+
+<style>
+  /* ─── Reset & base ──────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    color: #000;
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── Page wrapper — centred, max 1280 px ───────────────────────── */
+  .page {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ─── Header ────────────────────────────────────────────────────── */
+  /*
+    Figma coords (frame-relative):
+      Logo  : x=64  y=26  w=134 h=88
+      Nav   : x=361 y=70  h=49   font 24px / tracking 1.2px
+  */
+  .header {
+    position: relative;
+    height: 140px;          /* logo top(26) + height(88) + bottom pad */
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .logo {
+    position: absolute;
+    left: 64px;
+    top: 26px;
+    width: 134px;
+    height: 88px;
+    object-fit: contain;
+  }
+
+  .nav {
+    position: absolute;
+    left: 361px;
+    top: 70px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav a {
+    font-size: 24px;
+    letter-spacing: 1.2px;
+    line-height: 1.4;
+    padding-right: 24px;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .nav a:last-child { padding-right: 0; }
+  .nav a:hover { opacity: 0.7; }
+
+  /* ─── Hero section ──────────────────────────────────────────────── */
+  /*
+    Figma coords (frame-relative):
+      Character  : x=0   y=233  w=405  h=575   (bleeds to y=808)
+      Branding   : x=717 y=119  w=766  h=754   (z-index low: behind image)
+      Hero image : x=259 y=169  w=695  h=454
+      Btn pink   : x=259 y=650  w=292  h=84   r=39px
+      Btn blue   : x=662 y=650  w=292  h=84   r=39px
+  */
+  .hero {
+    position: relative;
+    /* hero runs from y=119 (branding top) to y=808 (pink section start)
+       relative to frame; header already takes 0–140px, so we shrink
+       by the header height and keep the absolute coords frame-relative */
+    height: 808px;      /* pink section starts at y=808 in the frame */
+  }
+
+  .hero__character {
+    position: absolute;
+    left: 0;
+    top: 233px;
+    width: 405px;
+    height: 575px;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero__branding {
+    position: absolute;
+    left: 717px;
+    top: 119px;
+    width: 766px;
+    height: 754px;
+    object-fit: contain;
+    z-index: 0;        /* sits behind the campaign image */
+    pointer-events: none;
+  }
+
+  .hero__image {
+    position: absolute;
+    left: 259px;
+    top: 169px;
+    width: 695px;
+    height: 454px;
+    object-fit: cover;
+    z-index: 2;
+    border-radius: 4px;
+  }
+
+  /* Buttons live inside the hero container, y=650 (frame-relative) */
+  .hero__buttons {
+    position: absolute;
+    top: 650px;
+    left: 259px;
+    display: flex;
+    gap: 111px;          /* 662 - 259 - 292 = 111px gap */
+    z-index: 3;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 292px;
+    height: 84px;
+    border-radius: 39px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 1.6px;
+    color: #fff;
+    white-space: nowrap;
+    transition: filter 0.2s;
+  }
+
+  .btn:hover { filter: brightness(1.1); }
+
+  .btn--pink { background: #d7316e; }
+  .btn--blue { background: #225ea1; }
+
+  /* ─── Pink content band ─────────────────────────────────────────── */
+  .content-band {
+    width: 100%;
+    height: 463px;
+    background: #fcebf0;
+  }
+</style>

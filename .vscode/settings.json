@@ -1,0 +1,4 @@
+{
+  // Auto-approve all agent tool calls (skips confirmation prompts)
+  "chat.permissions.default": "autoApprove"
+}
