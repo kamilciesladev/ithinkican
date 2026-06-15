@@ -5,7 +5,16 @@ Allows GitHub Copilot (and other MCP-compatible agents) to read from and write t
 
 ---
 
-## Step 1 — Add the MCP server config
+## Reference Figma file
+
+This project uses **[On Da Radę](https://www.figma.com/design/iyrRYxHYeNx3n3MpEVyHWT/ondarade?t=fTMczYqmtmxyIjPr-0)** as the design source.
+
+Once your MCP connection is set up, you can:
+- Ask Copilot to inspect the design: `Can you analyze the main frame?`
+- Generate code from it: `Implement the main frame as an Astro component`
+- Make edits: `Add a section to the pink rectangle`
+
+---
 
 Open (or create) the VS Code global MCP config file:
 
