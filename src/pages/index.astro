@@ -1,9 +1,8 @@
 ---
-// ─── Figma asset URLs (valid 7 days) ──────────────────────────────
-const imgCharacter = "https://www.figma.com/api/mcp/asset/f18aee8f-d043-45b4-8a8f-4de8e1c19df6";
-const imgLogo      = "https://www.figma.com/api/mcp/asset/0e62fcd9-23f0-4519-963a-9d71e5b5ea76";
-const imgHero      = "https://www.figma.com/api/mcp/asset/9345afac-4d0d-4fc5-97be-51b92f89517f";
-const imgBranding  = "https://www.figma.com/api/mcp/asset/602dddbc-a5b2-4fa0-8cb7-b20b6165efa4";
+const imgCharacter = "/assets/character.png";
+const imgLogo      = "/assets/logo.svg";
+const imgHero      = "/assets/hero.png";
+const imgBranding  = "/assets/branding.png";
 ---
 
 <html lang="pl">
@@ -214,7 +213,7 @@ const imgBranding  = "https://www.figma.com/api/mcp/asset/602dddbc-a5b2-4fa0-8cb
             <div class="pdf-thumb"></div>
             <div class="pdf-thumb pdf-thumb--offset"></div>
           </div>
-          <a href="#" class="btn btn--pink btn--pdf">
+          <a href="/assets/ulotka.pdf" download="ulotka.pdf" class="btn btn--pink btn--pdf">
             <span class="btn__icon btn__icon--file" aria-hidden="true"></span>
             Pobierz PDF
           </a>
@@ -253,7 +252,7 @@ const imgBranding  = "https://www.figma.com/api/mcp/asset/602dddbc-a5b2-4fa0-8cb
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #fff;
+    background: #fff url('/assets/branding.png') center center / cover fixed no-repeat;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
     color: #1a1a1a;
