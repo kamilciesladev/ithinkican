@@ -42,19 +42,13 @@ const waveHeights = [
     max-width: 100%;
     min-width: 0;
     height: 100%;
-    padding: 40px 40px 48px;
-    display: flex;
-    flex-direction: column;
+    padding: var(--media-card-padding-block) var(--media-card-padding-inline);
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
     gap: 24px;
     background: #fdecf0;
     border: 2px solid #e2d0d9;
     border-radius: 15px;
-  }
-
-  @media (max-width: 900px) {
-    .radio-section {
-      padding: 32px 24px;
-    }
   }
 
   .radio-section__sub {
@@ -66,6 +60,7 @@ const waveHeights = [
   }
 
   .audio-player {
+    grid-row: 4;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -75,7 +70,6 @@ const waveHeights = [
     padding: 0 18px;
     height: var(--media-control-height);
     width: 100%;
-    margin-top: auto;
     max-width: 100%;
   }
 

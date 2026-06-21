@@ -41,22 +41,22 @@
   .posters-section {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: center;
+    align-items: stretch;
     gap: 16px;
     width: 100%;
     max-width: 100%;
     min-width: 0;
     height: 100%;
     min-height: 280px;
-    padding: 28px 28px 48px 40px;
+    padding: var(--media-card-padding-block) var(--media-card-padding-inline);
     background: #d7316e;
     border-radius: 15px;
     overflow: hidden;
   }
 
   .posters-section__content {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     align-items: flex-start;
     gap: 16px;
     min-width: 0;
@@ -107,9 +107,9 @@
   }
 
   .btn--pdf-download {
+    grid-row: 3;
     width: fit-content;
     height: var(--media-control-height);
-    margin-top: auto;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
@@ -136,7 +136,6 @@
     .posters-section {
       grid-template-columns: 1fr;
       min-height: 0;
-      padding: 24px 28px 28px;
     }
 
     .posters-section__content {
