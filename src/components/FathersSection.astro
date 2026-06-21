@@ -191,14 +191,34 @@ const exampleCards = Array.from({ length: 4 }, () => ({
   @media (max-width: 900px) {
     .section-fathers {
       padding: 42px 0 72px var(--section-inset-x);
+      overflow-x: visible;
     }
 
     .section-fathers__layout {
       flex-direction: column;
+      min-width: 0;
     }
 
     .section-fathers__intro {
       width: 100%;
+      padding-right: var(--section-inset-x);
+    }
+
+    .fathers-carousel {
+      width: calc(100% + var(--section-inset-x));
+      margin-left: calc(-1 * var(--section-inset-x));
+      padding-left: var(--section-inset-x);
+      scroll-padding-left: var(--section-inset-x);
+      scroll-padding-right: var(--section-inset-x);
+      gap: 24px;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+    }
+
+    .father-card {
+      scroll-snap-align: start;
     }
   }
 </style>
@@ -256,7 +276,7 @@ const exampleCards = Array.from({ length: 4 }, () => ({
     };
 
     carousel.addEventListener('pointerdown', (event) => {
-      if (event.button !== 0) return;
+      if (event.button !== 0 || event.pointerType === 'touch') return;
 
       cancelMomentum();
       isDragging = true;
