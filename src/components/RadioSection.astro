@@ -1,0 +1,130 @@
+---
+import TitleWithUnderline from './TitleWithUnderline.astro';
+
+const waveHeights = [
+  12, 24, 40, 32, 25, 10, 26, 21, 24, 23, 26, 40,
+  31, 25, 25, 11, 26, 21, 24, 10, 27, 21, 25, 21, 24,
+];
+---
+
+<div class="radio-section">
+  <TitleWithUnderline
+    variant="flourish"
+    align="left"
+    size="compact"
+    underlineWidth={11}
+    underlineThickness={1.35}
+  >
+    Spot radiowy
+  </TitleWithUnderline>
+  <p class="radio-section__sub">Posłuchaj spotu kampanii</p>
+  <div class="audio-player" role="group" aria-label="Odtwarzacz audio">
+    <button class="audio-player__play" aria-label="Odtwórz">
+      <img
+        class="btn__icon btn__icon--play"
+        src="/assets/icon-play.svg"
+        alt=""
+        aria-hidden="true"
+      />
+    </button>
+    <div class="audio-player__wave" aria-hidden="true">
+      {waveHeights.map((height) => (
+        <span style={`height: ${height}px`}></span>
+      ))}
+    </div>
+    <span class="audio-player__time">0:00 / 0:30</span>
+  </div>
+</div>
+
+<style>
+  .radio-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: 40px 40px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: #fdecf0;
+    border: 2px solid #e2d0d9;
+    border-radius: 15px;
+  }
+
+  @media (max-width: 900px) {
+    .radio-section {
+      padding: 32px 24px;
+    }
+  }
+
+  .radio-section__sub {
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #1a1a1a;
+    margin-top: -12px;
+  }
+
+  .audio-player {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    background: #d7316e;
+    border-radius: 39px;
+    padding: 0 18px;
+    height: var(--media-control-height);
+    width: 100%;
+    margin-top: auto;
+    max-width: 100%;
+  }
+
+  .audio-player__play {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .audio-player__play .btn__icon--play {
+    height: 32px;
+    border: none;
+  }
+
+  .audio-player__wave {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    height: 100%;
+  }
+
+  .audio-player__wave span {
+    display: block;
+    width: 2px;
+    background: #fff;
+    border-radius: 1px;
+    opacity: 0.9;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .audio-player__time {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
+  }
+</style>

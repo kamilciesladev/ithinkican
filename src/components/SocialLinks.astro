@@ -1,0 +1,42 @@
+---
+const links = [
+  { href: "#", label: "Instagram", icon: "/assets/social-instagram.svg" },
+  { href: "#", label: "Facebook", icon: "/assets/social-facebook.svg" },
+  { href: "#", label: "YouTube", icon: "/assets/social-youtube.svg" },
+];
+---
+
+<div class="social-links" aria-label="Media społecznościowe">
+  {
+    links.map(({ href, label, icon }) => (
+      <a class="social-links__btn" href={href} aria-label={label}>
+        <img src={icon} alt="" width="40" height="40" />
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+  }
+
+  .social-links__btn {
+    display: block;
+    line-height: 0;
+    transition: opacity 0.2s;
+  }
+
+  .social-links__btn:hover {
+    opacity: 0.75;
+  }
+
+  .social-links__btn img {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+</style>

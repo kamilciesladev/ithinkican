@@ -1,0 +1,67 @@
+---
+import TitleWithUnderline from './TitleWithUnderline.astro';
+---
+
+<section id="kampanii" class="section-campaign">
+  <div class="section-campaign__inner">
+    <TitleWithUnderline
+      variant="flourish"
+      align="center"
+      underlineWidth={20}
+      underlineThickness={1}
+      underlineOffset={-2}
+    >
+      O co chodzi w kampanii?
+    </TitleWithUnderline>
+    <div class="section-campaign__text">
+      <p>
+        <strong>„On Da Radę”</strong> to kampania społeczna skierowana do kobiet, promująca świadomy wybór partnera
+        oraz budowanie zdrowych, odpowiedzialnych relacji. Jej celem jest zwrócenie uwagi na
+        zachowania, które często są bagatelizowane lub usprawiedliwiane, mimo że mogą świadczyć
+        o braku dojrzałości, zaangażowania lub gotowości do tworzenia partnerskiego związku.
+      </p>
+      <p>
+        Kampania porusza temat strategicznej nieporadności – sytuacji, w której ktoś unika
+        odpowiedzialności, tłumacząc się brakiem wiedzy, umiejętności lub doświadczenia. W efekcie
+        obowiązki związane z prowadzeniem domu, organizacją życia rodzinnego czy opieką nad dziećmi
+        spadają na drugą osobę. Jednocześnie kampania pokazuje, że mężczyźni są w pełni zdolni
+        do troski, odpowiedzialności i poświęcenia. W materiałach prezentowane są przykłady ojców,
+        partnerów i opiekunów z różnych części świata, a także przykłady ze świata zwierząt, gdzie
+        samce aktywnie uczestniczą w wychowywaniu potomstwa, zapewnianiu bezpieczeństwa czy
+        codziennej opiece.
+      </p>
+      <p>
+        Przekaz kampanii jest prosty: mężczyźni potrafią dokonywać rzeczy niezwykłych – ratować
+        życie, opiekować się dziećmi, budować silne relacje i brać odpowiedzialność za innych.
+        Problemem nie jest brak możliwości czy predyspozycji, lecz fakt, że przez lata
+        znormalizowano oczekiwanie od nich znacznie mniej niż od kobiet. „On Da Radę” zachęca do
+        patrzenia na czyny zamiast deklaracji oraz do zadawania sobie pytania: czy osoba, z którą
+        chcę budować przyszłość, już dziś pokazuje, że potrafi być odpowiedzialnym partnerem,
+        rodzicem i człowiekiem? Bo skoro inni potrafią – on również da radę.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-campaign {
+    background: #fcebf0;
+    padding: 56px 0 72px;
+  }
+
+  .section-campaign__inner {
+    padding: 0 128px;
+  }
+
+  .section-campaign__text {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 1061px;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Barlow Condensed', sans-serif;
+    line-height: 1.7;
+    color: #1a1a1a;
+  }
+</style>

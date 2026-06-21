@@ -1,0 +1,291 @@
+---
+const exampleCards = Array.from({ length: 4 }, () => ({
+  title: 'Example title',
+  desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+}));
+---
+
+<section id="przyklady" class="section-fathers">
+  <div class="section-fathers__layout">
+    <div class="section-fathers__intro">
+      <h2 class="section-fathers__title">
+        Ojcowie i partnerzy<br />z całego świata
+      </h2>
+      <div class="section-fathers__sub">
+        <p>Jeśli Oni potrafili zrobić </p>
+        <p>te rzeczy twój </p>
+        <p>
+          z pewnością <strong>da radę </strong>zrobić prace domowe czy zająć się
+          swoimi emocjami!
+        </p>
+      </div>
+    </div>
+
+    <div class="fathers-carousel" role="list" data-fathers-carousel>
+      <article class="father-card" role="listitem">
+        <div class="father-card__photo" aria-label="Zdjęcie Mark Cronin"></div>
+        <h3 class="father-card__name">Mark Cronin</h3>
+        <p class="father-card__desc">
+          Ojciec wspiera syna z zespołem Downa w budowie firmy ze skarpetkami
+          „John's Crazy Socks", którą syn sam wymyślił i współtworzy. Razem
+          stworzyli milionowy biznes, który zatrudnia osoby z niepełnosprawnościami
+          i pokazuje, że ograniczenia można zamienić w siłę.
+        </p>
+      </article>
+
+      <article class="father-card" role="listitem">
+        <div class="father-card__photo" aria-label="Zdjęcie Ben Ryan"></div>
+        <h3 class="father-card__name">Ben Ryan</h3>
+        <p class="father-card__desc">
+          Ben Ryan, ojciec małego chłopca, którego ręka została amputowana tuż po
+          urodzeniu, nie chciał czekać lat na systemową pomoc i sam stworzył
+          3D-drukowaną, hydrauliczną protezę dla swojego syna w ramach projektu
+          Ambionics. Dzięki temu jego dziecko mogło dużo wcześniej używać
+          funkcjonalnej ręki, a rozwiązanie stało się inspiracją dla innych rodzin
+          i rozwojem tanich protez dla dzieci.
+        </p>
+      </article>
+
+      {exampleCards.map((card, index) => (
+        <article class="father-card" role="listitem">
+          <div
+            class="father-card__photo"
+            aria-label={`Zdjęcie przykładu ${index + 1}`}
+          ></div>
+          <h3 class="father-card__name">{card.title}</h3>
+          <p class="father-card__desc">{card.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-fathers {
+    background: #f0f8fe;
+    border-top: 1px solid #6ca1bf;
+    border-bottom: 1px solid #6ca1bf;
+    padding: 42px 0 72px 32px;
+    overflow: hidden;
+  }
+
+  .section-fathers__layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .section-fathers__intro {
+    flex-shrink: 0;
+    width: 410px;
+    padding-top: 12px;
+  }
+
+  .section-fathers__title {
+    font-family: 'Lobster', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    color: #1a1a1a;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .section-fathers__sub {
+    margin-top: 26px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.028;
+    letter-spacing: 1.5px;
+    color: #1a1a1a;
+    text-align: center;
+  }
+
+  .section-fathers__sub p {
+    margin: 0;
+  }
+
+  .section-fathers__sub strong {
+    font-weight: 700;
+  }
+
+  .fathers-carousel {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    gap: 69px;
+    overflow-x: scroll;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: #6ca1bf #d4e8f5;
+    padding-bottom: 12px;
+    cursor: grab;
+  }
+
+  .fathers-carousel--dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .fathers-carousel--dragging * {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .fathers-carousel::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .fathers-carousel::-webkit-scrollbar-track {
+    background: #d4e8f5;
+    border-radius: 5px;
+  }
+
+  .fathers-carousel::-webkit-scrollbar-thumb {
+    background: #6ca1bf;
+    border-radius: 5px;
+  }
+
+  .father-card {
+    flex-shrink: 0;
+    width: 319px;
+    min-height: 441px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(34, 94, 161, 0.10);
+  }
+
+  .father-card__photo {
+    width: 100%;
+    height: 200px;
+    background: #cde3f2;
+    flex-shrink: 0;
+  }
+
+  .father-card__name {
+    font-family: 'Lobster', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    line-height: 1.028;
+    text-align: center;
+    padding: 20px 20px 8px;
+    color: #1a1a1a;
+  }
+
+  .father-card__desc {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Barlow Condensed', sans-serif;
+    line-height: 1.028;
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 0 20px 24px;
+    color: #1a1a1a;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-fathers-carousel]').forEach((carousel) => {
+    if (!(carousel instanceof HTMLElement)) return;
+
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let previousX = 0;
+    let previousTime = 0;
+    let velocityX = 0;
+    let momentumFrame = 0;
+
+    const cancelMomentum = () => {
+      if (momentumFrame) {
+        cancelAnimationFrame(momentumFrame);
+        momentumFrame = 0;
+      }
+    };
+
+    const applyMomentum = () => {
+      const minVelocity = 0.02;
+
+      if (Math.abs(velocityX) < minVelocity) return;
+
+      let lastFrameTime = performance.now();
+
+      const step = (now: number) => {
+        const dt = Math.min(now - lastFrameTime, 32);
+        lastFrameTime = now;
+
+        const previousScroll = carousel.scrollLeft;
+        carousel.scrollLeft -= velocityX * dt;
+
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        const hitBoundary =
+          carousel.scrollLeft <= 0 ||
+          carousel.scrollLeft >= maxScroll ||
+          carousel.scrollLeft === previousScroll;
+
+        velocityX *= Math.pow(0.92, dt / 16);
+
+        if (hitBoundary || Math.abs(velocityX) < minVelocity) {
+          momentumFrame = 0;
+          return;
+        }
+
+        momentumFrame = requestAnimationFrame(step);
+      };
+
+      momentumFrame = requestAnimationFrame(step);
+    };
+
+    carousel.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0) return;
+
+      cancelMomentum();
+      isDragging = true;
+      startX = event.clientX;
+      scrollStart = carousel.scrollLeft;
+      previousX = event.clientX;
+      previousTime = performance.now();
+      velocityX = 0;
+      carousel.setPointerCapture(event.pointerId);
+      carousel.classList.add('fathers-carousel--dragging');
+    });
+
+    carousel.addEventListener('pointermove', (event) => {
+      if (!isDragging) return;
+
+      event.preventDefault();
+
+      const now = performance.now();
+      const dt = now - previousTime;
+
+      if (dt > 0) {
+        velocityX = (event.clientX - previousX) / dt;
+      }
+
+      previousX = event.clientX;
+      previousTime = now;
+      carousel.scrollLeft = scrollStart - (event.clientX - startX);
+    });
+
+    const stopDragging = (event: PointerEvent) => {
+      if (!isDragging) return;
+
+      isDragging = false;
+      carousel.classList.remove('fathers-carousel--dragging');
+
+      if (carousel.hasPointerCapture(event.pointerId)) {
+        carousel.releasePointerCapture(event.pointerId);
+      }
+
+      applyMomentum();
+    };
+
+    carousel.addEventListener('pointerup', stopDragging);
+    carousel.addEventListener('pointercancel', stopDragging);
+  });
+</script>

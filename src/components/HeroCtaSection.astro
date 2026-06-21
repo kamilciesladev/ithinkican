@@ -1,0 +1,108 @@
+<section class="hero">
+  <img class="hero__character" src="/assets/character.png" alt="Tata z dzieckiem" />
+  <img class="hero__people" src="/assets/hero-cta-people.png" alt="Ilustracja pary" />
+  <img class="hero__logo" src="/assets/logo.svg" alt="On Da Radę — logo" />
+  <div class="hero__buttons">
+    <a href="#materialy" class="btn btn--pink">
+      <img class="btn__icon btn__icon--document" src="/assets/icon-document.svg" alt="" aria-hidden="true" />
+      ZOBACZ ULOTKĘ
+    </a>
+    <a href="#spoty" class="btn btn--blue">
+      <img class="btn__icon btn__icon--play" src="/assets/icon-play.svg" alt="" aria-hidden="true" />
+      OBEJRZYJ SPOTY
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1280 / 808;
+    overflow: hidden;
+  }
+
+  .hero__character {
+    position: absolute;
+    left: 0;
+    top: 28.84%;
+    width: 31.64%;
+    height: auto;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero__people {
+    position: absolute;
+    right: 0;
+    top: 24.01%;
+    width: 43.98%;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+  }
+
+  .hero__logo {
+    position: absolute;
+    left: 20.23%;
+    top: 20.91%;
+    width: 54.3%;
+    height: auto;
+    object-fit: contain;
+    z-index: 2;
+  }
+
+  .hero__buttons {
+    position: absolute;
+    top: 80.45%;
+    left: 20.23%;
+    right: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(16px, 8.52%, 109px);
+    z-index: 3;
+  }
+
+  .hero__buttons .btn {
+    height: clamp(52px, 6.56vw, 84px);
+    font-size: clamp(16px, 2.19vw, 28px);
+    letter-spacing: 0.05em;
+    padding: 0 clamp(16px, 2.5vw, 32px);
+    border-radius: clamp(24px, 3.05vw, 39px);
+  }
+
+  .hero__buttons .btn--pink { width: clamp(200px, 22.81vw, 292px); }
+  .hero__buttons .btn--blue { width: clamp(210px, 24.38vw, 312px); }
+
+  .hero__buttons .btn__icon {
+    display: block;
+    flex-shrink: 0;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .hero__buttons .btn__icon--document {
+    height: clamp(18px, 2.2vw, 28px);
+  }
+
+  .hero__buttons .btn__icon--play {
+    height: clamp(22px, 2.8vw, 32px);
+    border: none;
+  }
+
+  @media (max-width: 640px) {
+    .hero__buttons {
+      left: 5%;
+      right: 5%;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .hero__buttons .btn--pink,
+    .hero__buttons .btn--blue {
+      width: min(100%, 292px);
+    }
+  }
+</style>

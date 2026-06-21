@@ -1,0 +1,31 @@
+<section id="materialy" class="section-media">
+  <slot name="radio" />
+  <slot name="posters" />
+</section>
+
+<style>
+  .section-media {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 24px;
+    padding: 24px var(--section-inset-x);
+    background: #fff;
+  }
+
+  .section-media > :global(*) {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .section-media {
+      grid-template-columns: 1fr;
+      padding: 16px var(--section-inset-x);
+      gap: 16px;
+    }
+  }
+</style>

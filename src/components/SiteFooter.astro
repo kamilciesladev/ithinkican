@@ -1,0 +1,62 @@
+<footer class="footer">
+  <img class="footer__logo" src="/assets/footer-logo.svg" alt="On Da Radę — logo" />
+  <img
+    class="footer__motto"
+    src="/assets/footer-motto.svg"
+    alt="Świadomy wybór. Lepsza relacja. Lepsza przyszłość."
+  />
+  <nav class="footer__nav" aria-label="Nawigacja stopki">
+    <a href="#kampanii">O kampanii</a>
+    <a href="#przyklady">Dobre przykłady</a>
+    <a href="#zrodla">Źródła</a>
+    <a href="#uwazac">Na co uważać</a>
+    <a href="#materialy">Materiały</a>
+  </nav>
+</footer>
+
+<style>
+  .footer {
+    background: #d7316e;
+    display: grid;
+    grid-template-columns: 168px 294px 1fr;
+    column-gap: 31px;
+    align-items: center;
+    min-height: 124px;
+    padding: 0 64px;
+    width: 100%;
+  }
+
+  .footer__logo {
+    width: 160px;
+    height: 96px;
+    object-fit: contain;
+    display: block;
+    align-self: center;
+  }
+
+  .footer__motto {
+    width: 294px;
+    height: auto;
+    display: block;
+  }
+
+  .footer__nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 40px;
+    row-gap: 8px;
+    min-width: 0;
+  }
+
+  .footer__nav a {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .footer__nav a:hover { opacity: 0.75; }
+</style>
