@@ -96,17 +96,24 @@ import { asset } from '../utils/asset';
   }
 
   @media (max-width: 640px) {
+    .hero {
+      aspect-ratio: 1280 / 1100;
+    }
+
     .hero__buttons {
+      top: auto;
+      bottom: 12px;
       left: 5%;
       right: 5%;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
       gap: 12px;
     }
 
     .hero__buttons .btn--pink,
     .hero__buttons .btn--blue {
-      width: min(100%, 292px);
+      width: 100%;
+      max-width: none;
     }
   }
 </style>

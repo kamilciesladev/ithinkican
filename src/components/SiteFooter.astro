@@ -63,4 +63,22 @@ import { asset } from '../utils/asset';
   }
 
   .footer__nav a:hover { opacity: 0.75; }
+
+  @media (max-width: 900px) {
+    .footer {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 24px;
+      padding: 32px var(--section-inset-x);
+      min-height: auto;
+    }
+
+    .footer__motto {
+      width: min(294px, 100%);
+    }
+
+    .footer__nav {
+      justify-content: center;
+    }
+  }
 </style>

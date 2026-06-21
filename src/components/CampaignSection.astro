@@ -9,7 +9,6 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
       align="center"
       underlineWidth={20}
       underlineThickness={1}
-      underlineOffset={-2}
     >
       O co chodzi w kampanii?
     </TitleWithUnderline>
@@ -63,5 +62,11 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
     font-family: 'Barlow Condensed', sans-serif;
     line-height: 1.7;
     color: #1a1a1a;
+  }
+
+  @media (max-width: 900px) {
+    .section-campaign__inner {
+      padding: 0 var(--section-inset-x);
+    }
   }
 </style>

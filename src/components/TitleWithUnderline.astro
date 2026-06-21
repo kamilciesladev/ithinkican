@@ -62,13 +62,14 @@ const flourishStyle =
   .title-with-underline__inner {
     position: relative;
     display: inline-block;
+    max-width: 100%;
   }
 
   .title-with-underline__text {
     position: relative;
     z-index: 1;
     font-family: 'Lobster', cursive;
-    font-size: 48px;
+    font-size: clamp(28px, 4.5vw, 48px);
     font-weight: 400;
     color: #1a1a1a;
     line-height: 1.2;
@@ -92,37 +93,20 @@ const flourishStyle =
     padding-bottom: 48px;
   }
 
-  /* Cloud underline — Figma: decoration x=335, heading x=443 → 108px left of title */
-  .title-with-underline--cloud .title-with-underline__decoration {
-    position: absolute;
-    width: 631px;
-    height: auto;
-    left: -108px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: -1;
-    pointer-events: none;
-  }
-
   /* Pink flourish — width and thickness controlled via CSS custom properties */
   .title-with-underline--flourish .title-with-underline__decoration {
     display: block;
     width: var(--underline-width, 27.375rem);
+    max-width: 100%;
     height: auto;
     pointer-events: none;
     transform-origin: left center;
+    margin: 2px 0 0 0;
     transform: translateX(var(--underline-offset, 0rem)) scaleY(var(--underline-thickness, 1));
-  }
-
-  .title-with-underline--flourish.title-with-underline--center .title-with-underline__decoration {
-    margin: 2px auto 0;
-    transform: translateX(calc(-84px + var(--underline-offset, 0rem)))
-      scaleY(var(--underline-thickness, 1));
   }
 
   .title-with-underline--flourish.title-with-underline--left .title-with-underline__decoration {
-    margin: -2px 0 0 8px;
-    transform: translateX(var(--underline-offset, 0rem)) scaleY(var(--underline-thickness, 1));
+    margin: -2px 0 0 clamp(0rem, 0.5vw, 0.5rem);
   }
 
   /* Compact — section/card headings */
@@ -139,9 +123,39 @@ const flourishStyle =
     margin: -2px 0 0 0;
   }
 
-  .title-with-underline--compact.title-with-underline--flourish.title-with-underline--center
-    .title-with-underline__decoration {
-    transform: translateX(calc(-32px + var(--underline-offset, 0rem)))
-      scaleY(var(--underline-thickness, 1));
+  /* Cloud underline — Figma: decoration x=335, heading x=443 → 108px left of title */
+  .title-with-underline--cloud .title-with-underline__decoration {
+    position: absolute;
+    width: 631px;
+    height: auto;
+    left: -108px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  @media (max-width: 900px) {
+    .title-with-underline--flourish .title-with-underline__decoration {
+      width: min(var(--underline-width, 27.375rem), 90%);
+    }
+
+    .title-with-underline--cloud .title-with-underline__text {
+      font-size: clamp(22px, 5.5vw, 36px);
+      padding: 10px 0;
+      letter-spacing: 1px;
+    }
+
+    .title-with-underline--cloud .title-with-underline__inner {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .title-with-underline--cloud .title-with-underline__decoration {
+      width: min(631px, calc(100vw - 2 * var(--section-inset-x)));
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 </style>

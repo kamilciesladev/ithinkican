@@ -4,17 +4,6 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
 ---
 
 <section id="uwazac" class="section-behaviors">
-  <!--
-    Heading overlap: wrap TitleWithUnderline in a local div — do NOT pass class to the
-    component (Astro scoped CSS won't match). Tune --behaviors-heading-top on
-    .section-behaviors to move the title up/down.
-  -->
-  <div class="behaviors-heading">
-    <TitleWithUnderline>
-      Jakie zachowania<br />są nieakceptowalne?
-    </TitleWithUnderline>
-  </div>
-
   <div class="section-behaviors__card">
     <svg class="behaviors-card-border" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
       <rect
@@ -29,6 +18,16 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
         ry="12"
       />
     </svg>
+    <div class="behaviors-heading">
+      <TitleWithUnderline
+        variant="flourish"
+        align="center"
+      underlineWidth={20}
+      underlineThickness={1}
+    >
+        Jakie zachowania<br />są nieakceptowalne?
+      </TitleWithUnderline>
+    </div>
     <div class="behaviors-content">
       <ul class="behaviors-list">
         <li class="behaviors-list__item">
@@ -85,34 +84,11 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
 
 <style>
   .section-behaviors {
-    /* Adjust title vertical position (overlap with card). Increase = title lower. */
-    --behaviors-heading-top: 6rem;
-
     padding: 60px var(--section-inset-x) 56px;
-    position: relative;
-  }
-
-  /*
-   * Title overlaps the card (partially above, partially inside).
-   * - .section-behaviors is the positioning context (position: relative).
-   * - .behaviors-heading is a wrapper div in THIS file (not on TitleWithUnderline).
-   *   Astro scoped styles only apply to elements in the same component.
-   * - Do NOT use negative margin-bottom on the heading — it pulls the card up but
-   *   does not move the title down.
-   * - Tune overlap via --behaviors-heading-top on .section-behaviors.
-   */
-  .behaviors-heading {
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    top: var(--behaviors-heading-top);
   }
 
   .section-behaviors__card {
     position: relative;
-    margin-top: 120px;
-    z-index: 1;
     background: #fff7ef;
     border-radius: 12px;
     overflow: hidden;
@@ -120,7 +96,12 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
     grid-template-columns: minmax(0, 1fr) clamp(220px, 30vw, 380px);
     column-gap: clamp(12px, 2vw, 28px);
     align-items: end;
-    padding: 80px clamp(24px, 3vw, 40px) 40px clamp(24px, 4vw, 60px);
+    padding: 40px clamp(24px, 3vw, 40px) 40px clamp(24px, 4vw, 60px);
+  }
+
+  .behaviors-heading {
+    grid-column: 1 / -1;
+    margin-bottom: 8px;
   }
 
   .behaviors-card-border {
@@ -199,15 +180,17 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
 
   @media (max-width: 900px) {
     .section-behaviors {
-      --behaviors-heading-top: 140px;
       padding: 48px var(--section-inset-x) 44px;
     }
 
     .section-behaviors__card {
-      margin-top: 40px;
       grid-template-columns: 1fr;
       row-gap: 20px;
-      padding: 68px 24px 32px;
+      padding: 32px 24px;
+    }
+
+    .behaviors-heading {
+      margin-bottom: 4px;
     }
 
     .behaviors-photo {
