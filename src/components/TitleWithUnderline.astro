@@ -1,4 +1,6 @@
 ---
+import { asset } from '../utils/asset';
+
 interface Props {
   variant?: 'cloud' | 'flourish';
   align?: 'center' | 'left';
@@ -20,7 +22,9 @@ const {
 } = Astro.props;
 
 const decorationSrc =
-  variant === 'cloud' ? '/behaviors-heading-cloud.svg' : '/flourish-campaign.svg';
+  variant === 'cloud'
+    ? asset('/behaviors-heading-cloud.svg')
+    : asset('/flourish-campaign.svg');
 
 const flourishStyle =
   variant === 'flourish'

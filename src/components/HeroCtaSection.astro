@@ -1,14 +1,18 @@
+---
+import { asset } from '../utils/asset';
+---
+
 <section class="hero">
-  <img class="hero__character" src="/assets/character.png" alt="Tata z dzieckiem" />
-  <img class="hero__people" src="/assets/hero-cta-people.png" alt="Ilustracja pary" />
-  <img class="hero__logo" src="/assets/logo.svg" alt="On Da Radę — logo" />
+  <img class="hero__character" src={asset("/assets/character.png")} alt="Tata z dzieckiem" />
+  <img class="hero__people" src={asset("/assets/hero-cta-people.png")} alt="Ilustracja pary" />
+  <img class="hero__logo" src={asset("/assets/logo.svg")} alt="On Da Radę — logo" />
   <div class="hero__buttons">
     <a href="#materialy" class="btn btn--pink">
-      <img class="btn__icon btn__icon--document" src="/assets/icon-document.svg" alt="" aria-hidden="true" />
+      <img class="btn__icon btn__icon--document" src={asset("/assets/icon-document.svg")} alt="" aria-hidden="true" />
       ZOBACZ ULOTKĘ
     </a>
     <a href="#spoty" class="btn btn--blue">
-      <img class="btn__icon btn__icon--play" src="/assets/icon-play.svg" alt="" aria-hidden="true" />
+      <img class="btn__icon btn__icon--play" src={asset("/assets/icon-play.svg")} alt="" aria-hidden="true" />
       OBEJRZYJ SPOTY
     </a>
   </div>

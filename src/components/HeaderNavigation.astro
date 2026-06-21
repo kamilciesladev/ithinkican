@@ -1,10 +1,11 @@
 ---
+import { asset } from '../utils/asset';
 import SocialLinks from "./SocialLinks.astro";
 ---
 
 <header class="header">
   <a href="#top" class="header__logo-link" aria-label="Powrót na górę strony">
-    <img class="header__logo" src="/assets/logo.svg" alt="On Da Radę — logo" />
+    <img class="header__logo" src={asset("/assets/logo.svg")} alt="On Da Radę — logo" />
   </a>
   <nav class="header__nav" aria-label="Nawigacja główna">
     <a href="#kampanii">O kampanii</a>

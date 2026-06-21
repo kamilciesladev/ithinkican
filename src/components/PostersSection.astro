@@ -1,7 +1,11 @@
+---
+import { asset } from '../utils/asset';
+---
+
 <div class="posters-section">
   <div class="posters-section__content">
     <h2 class="posters-section__heading">Pobierz ulotkę kampanii</h2>
-    <a href="/assets/ulotka.pdf" download="ulotka.pdf" class="btn btn--pdf-download">
+    <a href={asset("/assets/ulotka.pdf")} download="ulotka.pdf" class="btn btn--pdf-download">
     <svg
       class="btn__icon-document"
       viewBox="0 0 35 43"
@@ -32,8 +36,8 @@
     </a>
   </div>
   <div class="pdf-thumbs" aria-hidden="true">
-    <img class="pdf-thumb pdf-thumb--back" src="/assets/pdf-thumb-back.png" alt="" />
-    <img class="pdf-thumb pdf-thumb--front" src="/assets/pdf-thumb-front.png" alt="" />
+    <img class="pdf-thumb pdf-thumb--back" src={asset("/assets/pdf-thumb-back.png")} alt="" />
+    <img class="pdf-thumb pdf-thumb--front" src={asset("/assets/pdf-thumb-front.png")} alt="" />
   </div>
 </div>
 

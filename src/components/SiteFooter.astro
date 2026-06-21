@@ -1,8 +1,12 @@
+---
+import { asset } from '../utils/asset';
+---
+
 <footer class="footer">
-  <img class="footer__logo" src="/assets/footer-logo.svg" alt="On Da Radę — logo" />
+  <img class="footer__logo" src={asset("/assets/footer-logo.svg")} alt="On Da Radę — logo" />
   <img
     class="footer__motto"
-    src="/assets/footer-motto.svg"
+    src={asset("/assets/footer-motto.svg")}
     alt="Świadomy wybór. Lepsza relacja. Lepsza przyszłość."
   />
   <nav class="footer__nav" aria-label="Nawigacja stopki">

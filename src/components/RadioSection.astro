@@ -1,4 +1,5 @@
 ---
+import { asset } from '../utils/asset';
 import TitleWithUnderline from './TitleWithUnderline.astro';
 
 const waveHeights = [
@@ -22,7 +23,7 @@ const waveHeights = [
     <button class="audio-player__play" aria-label="Odtwórz">
       <img
         class="btn__icon btn__icon--play"
-        src="/assets/icon-play.svg"
+        src={asset("/assets/icon-play.svg")}
         alt=""
         aria-hidden="true"
       />
