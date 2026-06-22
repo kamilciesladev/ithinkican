@@ -20,22 +20,104 @@ const waveHeights = [
   </TitleWithUnderline>
   <p class="radio-section__sub">Posłuchaj spotu kampanii</p>
   <div class="audio-player" role="group" aria-label="Odtwarzacz audio">
-    <button class="audio-player__play" aria-label="Odtwórz">
+    <audio
+      class="audio-player__audio"
+      preload="metadata"
+      src={asset('/assets/spot-radiowy.wav')}
+    ></audio>
+    <button class="audio-player__play" aria-label="Odtwórz spot" type="button">
       <img
         class="btn__icon btn__icon--play"
         src={asset("/assets/icon-play.svg")}
         alt=""
         aria-hidden="true"
       />
+      <span class="audio-player__pause" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </span>
     </button>
     <div class="audio-player__wave" aria-hidden="true">
       {waveHeights.map((height) => (
         <span style={`height: ${height}px`}></span>
       ))}
     </div>
-    <span class="audio-player__time">0:00 / 0:30</span>
+    <button class="audio-player__stop" type="button" aria-label="Zatrzymaj odsłuch">■</button>
+    <span class="audio-player__time" aria-live="polite">0:00 / 0:00</span>
   </div>
 </div>
+
+<script is:inline>
+  (() => {
+    const scriptEl = document.currentScript;
+    const root = scriptEl?.previousElementSibling?.classList.contains('radio-section')
+      ? scriptEl.previousElementSibling
+      : null;
+    if (!root) return;
+
+    const audio = root.querySelector('.audio-player__audio');
+    const playButton = root.querySelector('.audio-player__play');
+    const stopButton = root.querySelector('.audio-player__stop');
+    const timeLabel = root.querySelector('.audio-player__time');
+
+    if (!audio || !playButton || !stopButton || !timeLabel) return;
+
+    const formatTime = (seconds) => {
+      if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60)
+        .toString()
+        .padStart(2, '0');
+      return `${mins}:${secs}`;
+    };
+
+    const updateTime = () => {
+      timeLabel.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+    };
+
+    const setPlayingState = (isPlaying) => {
+      playButton.classList.toggle('is-playing', isPlaying);
+      playButton.setAttribute('aria-label', isPlaying ? 'Pauza spotu' : 'Odtwórz spot');
+    };
+
+    const showLoadError = () => {
+      setPlayingState(false);
+      timeLabel.textContent = 'Brak pliku audio';
+    };
+
+    playButton.addEventListener('click', async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          setPlayingState(true);
+        } catch {
+          showLoadError();
+        }
+      } else {
+        audio.pause();
+        setPlayingState(false);
+      }
+    });
+
+    stopButton.addEventListener('click', () => {
+      audio.pause();
+      audio.currentTime = 0;
+      setPlayingState(false);
+      updateTime();
+    });
+
+    audio.addEventListener('loadedmetadata', updateTime);
+    audio.addEventListener('error', showLoadError);
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('ended', () => {
+      audio.currentTime = 0;
+      setPlayingState(false);
+      updateTime();
+    });
+
+    updateTime();
+  })();
+</script>
 
 <style>
   .radio-section {
@@ -74,6 +156,10 @@ const waveHeights = [
     max-width: 100%;
   }
 
+  .audio-player__audio {
+    display: none;
+  }
+
   .audio-player__play {
     background: none;
     border: none;
@@ -89,6 +175,28 @@ const waveHeights = [
   .audio-player__play .btn__icon--play {
     height: 32px;
     border: none;
+  }
+
+  .audio-player__pause {
+    display: none;
+    align-items: center;
+    gap: 7px;
+    height: 32px;
+  }
+
+  .audio-player__pause span {
+    width: 6px;
+    height: 32px;
+    border-radius: 999px;
+    background: #fff;
+  }
+
+  .audio-player__play.is-playing .btn__icon--play {
+    display: none;
+  }
+
+  .audio-player__play.is-playing .audio-player__pause {
+    display: inline-flex;
   }
 
   .audio-player__wave {
@@ -121,5 +229,16 @@ const waveHeights = [
     white-space: nowrap;
     flex-shrink: 0;
     align-self: center;
+  }
+
+  .audio-player__stop {
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px;
+    flex-shrink: 0;
   }
 </style>
