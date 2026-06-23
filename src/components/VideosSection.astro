@@ -2,7 +2,7 @@
 import { asset } from '../utils/asset';
 import TitleWithUnderline from './TitleWithUnderline.astro';
 
-const youtubeVideoId = 'dQw4w9WgXcQ';
+const youtubeVideoId = 'jr9Z6Bsbisk';
 const youtubeEmbedUrl = `https://www.youtube.com/embed/${youtubeVideoId}`;
 const youtubeChannelUrl = 'https://www.youtube.com/';
 ---
@@ -18,6 +18,15 @@ const youtubeChannelUrl = 'https://www.youtube.com/';
       class="section-videos__title"
     >
       Spot video
+      <img
+        slot="trailing"
+        class="section-videos__paw"
+        src={asset('/assets/spot-paw.svg')}
+        alt=""
+        width="72"
+        height="51"
+        aria-hidden="true"
+      />
     </TitleWithUnderline>
     <a
       href={youtubeChannelUrl}
@@ -60,12 +69,41 @@ const youtubeChannelUrl = 'https://www.youtube.com/';
   }
 
   .section-videos__title {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .section-videos__paw {
     flex-shrink: 0;
+    width: clamp(52px, 9vw, 72px);
+    height: auto;
+    margin-left: 10px;
+    transform-origin: 50% 90%;
+    transition: transform 0.2s ease;
+  }
+
+  .section-videos__paw:hover {
+    animation: section-videos-paw-sway 1.2s ease-in-out infinite;
+  }
+
+  @keyframes section-videos-paw-sway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .section-videos__paw:hover {
+      animation: none;
+    }
   }
 
   .btn--yt {
-    width: 507px;
-    font-size: 24px;
+    width: fit-content;
+    max-width: 100%;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    padding: 0 24px;
     margin-top: 4px;
   }
 
@@ -74,6 +112,7 @@ const youtubeChannelUrl = 'https://www.youtube.com/';
     width: auto;
     height: 36px;
     border: none;
+    margin-left: -3px;
   }
 
   .section-videos__player {
@@ -101,10 +140,47 @@ const youtubeChannelUrl = 'https://www.youtube.com/';
       gap: 16px;
     }
 
-    .btn--yt {
-      width: 100%;
+    .section-videos__title :global(.title-with-underline__decoration) {
+      width: var(--underline-width, 11rem);
       max-width: 100%;
-      font-size: 20px;
+    }
+
+    .section-videos__paw {
+      width: clamp(52px, 14vw, 70px);
+    }
+
+    .btn--yt {
+      width: fit-content;
+      max-width: 100%;
+      height: 56px;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      padding: 0 20px;
+      gap: 10px;
+      margin-top: 0;
+    }
+
+    .btn--yt .btn__icon--play {
+      height: 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .section-videos__paw {
+      width: clamp(48px, 13vw, 58px);
+    }
+
+    .btn--yt {
+      height: 44px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 0 14px;
+      gap: 8px;
+      border-radius: 22px;
+    }
+
+    .btn--yt .btn__icon--play {
+      height: 28px;
     }
   }
 </style>

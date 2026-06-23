@@ -43,7 +43,10 @@ const flourishStyle =
   style={flourishStyle}
 >
   <div class="title-with-underline__inner">
-    <h2 class="title-with-underline__text"><slot /></h2>
+    <div class="title-with-underline__heading-row">
+      <h2 class="title-with-underline__text"><slot /></h2>
+      <slot name="trailing" />
+    </div>
     <img
       class="title-with-underline__decoration"
       src={decorationSrc}
@@ -63,6 +66,18 @@ const flourishStyle =
     position: relative;
     display: inline-block;
     max-width: 100%;
+  }
+
+  .title-with-underline__heading-row {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(4px, 1vw, 12px);
+    max-width: 100%;
+  }
+
+  .title-with-underline__heading-row .title-with-underline__text {
+    flex: 0 0 auto;
+    width: auto;
   }
 
   .title-with-underline__text {

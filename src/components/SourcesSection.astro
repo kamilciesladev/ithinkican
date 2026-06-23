@@ -1,5 +1,104 @@
 ---
 import { asset } from '../utils/asset';
+
+const sources = [
+  {
+    title: 'National Couples and Pornography Survey 2021 – Wheatley Institution',
+    desc: 'Główne amerykańskie badanie par na temat konsumpcji pornografii (2021).',
+  },
+  {
+    title: 'Artykuł IFS: The Four Cs of Pornography in Couple Relationships',
+    desc: 'Analiza wpływu pornografii na związki – skupia się na ukrywaniu i konfliktach.',
+  },
+  {
+    title: 'Porn Gap: Difference in Men and Women Pornography Patterns',
+    desc: 'Różnica w percepcji oglądania porno między mężczyznami a ich partnerkami.',
+  },
+  {
+    title: 'Raport „Zdrady i romanse” CBOS (2011) + nowsze sondaże',
+    desc: 'Historyczne i aktualne trendy niewierności w Polsce.',
+  },
+  {
+    title: 'Badanie Shapiro, Gottman & Carrère (2000) – „The Baby and the Marriage”',
+    desc: 'Długoterminowe badanie par pokazujące, że u 67% satysfakcja relacji spada w ciągu 3 lat po narodzinach pierwszego dziecka.',
+  },
+  {
+    title: 'Mental Load & Emotional Labor – badania Daminger / Gottman Institute',
+    desc: 'Kobiety wykonują większość niewidzialnej pracy emocjonalnej i organizacyjnej w związku.',
+  },
+  {
+    title: 'Badania University of Bath / Ruppanner (71% mental load)',
+    desc: 'Matki i partnerki niosą główne obciążenie mentalne i „emocjonalne macierzyństwo”.',
+  },
+  {
+    title: 'Przeglądy systematyczne (m.in. Reich-Stiebert 2023)',
+    desc: '50–90% kobiet zgłasza nadmierny mental load i pracę emocjonalną wobec partnera.',
+  },
+  {
+    title: 'Gottman Institute: Predicting Divorce From the First Three Minutes of Conflict Discussion',
+    desc: 'Badania nad inicjowaniem konfliktów i rozmów o emocjach w parach.',
+  },
+  {
+    title: 'Raporty CBOS / Instytut Psychologii PAN',
+    desc: 'Ok. 60% nie rozmawia otwarcie o emocjach w związku.',
+  },
+  {
+    title: 'Raport Polskiego Instytutu Ekonomicznego (PIE, 2025)',
+    desc: '63% matek z małymi dziećmi wykonuje większość obowiązków domowych i opiekuńczych.',
+  },
+  {
+    title: 'Badanie „Polki i przedsiębiorczość 2024”',
+    desc: '45% Polek deklaruje, że samodzielnie robi większość prac domowych (vs 21% mężczyzn).',
+  },
+  {
+    title: 'Zmiana modelu rodziny – dane GUS / PIE',
+    desc: 'Klasyczny model „tylko mężczyzna zarabia” jest już w mniejszości rodzin (ok. 20–30%).',
+  },
+  {
+    title: 'Rejestr Dłużników BIG InfoMonitor (2025)',
+    desc: '94% dłużników alimentacyjnych to mężczyźni.',
+  },
+  {
+    title: 'BIG InfoMonitor – dług alimentacyjny',
+    desc: 'Całkowity dług przekroczył 17 miliardów złotych.',
+  },
+  {
+    title: 'BIG InfoMonitor – średnie zadłużenie',
+    desc: 'Średni dług jednego dłużnika alimentacyjnego wynosi 58 600 zł.',
+  },
+  {
+    title: 'Statystyki Komendy Głównej Policji – procedura „Niebieska Karta”',
+    desc: 'Mężczyźni stanowią ok. 90% sprawców przemocy domowej w zgłoszonych przypadkach.',
+  },
+  {
+    title: 'Dane Policji (2019–2024)',
+    desc: 'Wypełnione formularze Niebieska Karta – mężczyźni ok. 87–92% sprawców.',
+  },
+  {
+    title: 'Raporty roczne Policji',
+    desc: 'Dominująca większość sprawców przemocy domowej to mężczyźni (ok. 90%).',
+  },
+  {
+    title: 'Dane GUS – inicjowanie rozwodów',
+    desc: 'Kobiety składają pozew w 66–70% przypadków rozwodów w Polsce.',
+  },
+  {
+    title: 'Statystyki orzekania winy (sądy powszechne)',
+    desc: 'Wyłączna wina męża orzekana 4–5 razy częściej niż winy żony.',
+  },
+  {
+    title: 'Badanie Glantz et al. (Cancer, 2009)',
+    desc: 'Gdy kobieta choruje na raka – co 5. małżeństwo się rozpada.',
+  },
+  {
+    title: 'Badanie Glantz et al. (Cancer, 2009)',
+    desc: 'Gdy mężczyzna choruje – tylko co 35. małżeństwo się rozpada.',
+  },
+  {
+    title: 'Partner abandonment w chorobie nowotworowej',
+    desc: 'Kobiety 7-krotnie częściej porzucane przez partnera niż mężczyźni.',
+  },
+];
 ---
 
 <section id="zrodla" class="section-sources">
@@ -15,7 +114,16 @@ import { asset } from '../utils/asset';
     />
   </div>
   <div class="sources-list">
-    <p class="sources-placeholder">Treść źródeł do uzupełnienia.</p>
+    <ul class="sources-items">
+      {sources.map((source) => (
+        <li class="sources-item">
+          <div class="sources-item__body">
+            <p class="sources-item__title">{source.title}</p>
+            {source.desc && <p class="sources-item__desc">{source.desc}</p>}
+          </div>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
 
@@ -26,7 +134,7 @@ import { asset } from '../utils/asset';
     border: 1px solid #d9d9d9;
     border-radius: 8px;
     padding: 48px 64px;
-    min-height: 349px;
+    min-height: 0;
   }
 
   .sources-header {
@@ -51,17 +159,85 @@ import { asset } from '../utils/asset';
     width: 39px;
     height: 42px;
     margin-top: 4px;
+    transform-origin: 50% 85%;
+    transition: transform 0.2s ease;
   }
 
-  .sources-placeholder {
+  .sources-search-icon:hover {
+    animation: sources-search-sway 1.2s ease-in-out infinite;
+  }
+
+  @keyframes sources-search-sway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-7deg); }
+    75% { transform: rotate(7deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sources-search-icon:hover {
+      animation: none;
+    }
+  }
+
+  .sources-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 48px;
+    width: 100%;
+  }
+
+  .sources-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  .sources-item::before {
+    content: '';
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    margin-top: 7px;
+    border-radius: 50%;
+    background: #225ea1;
+  }
+
+  .sources-item__body {
+    min-width: 0;
+  }
+
+  .sources-item__title {
+    margin: 0 0 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.3px;
+    color: #1a1a1a;
+  }
+
+  .sources-item__desc {
+    margin: 0;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 16px;
     font-weight: 400;
-    color: #999;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+    color: #444;
   }
 
   @media (max-width: 900px) {
     .section-sources {
       padding: 32px var(--section-inset-x);
+    }
+
+    .sources-items {
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
   }
 </style>

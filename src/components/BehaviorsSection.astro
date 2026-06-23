@@ -101,7 +101,11 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
 
   .behaviors-heading {
     grid-column: 1 / -1;
-    margin-bottom: 8px;
+    margin-bottom: 0;
+  }
+
+  .behaviors-heading :global(.title-with-underline--flourish) {
+    padding-bottom: 12px;
   }
 
   .behaviors-card-border {
@@ -123,7 +127,7 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 20px;
   }
 
   .behaviors-list__item {
@@ -185,29 +189,22 @@ import TitleWithUnderline from './TitleWithUnderline.astro';
 
     .section-behaviors__card {
       grid-template-columns: 1fr;
-      row-gap: 20px;
+      row-gap: 8px;
       padding: 32px 24px;
     }
 
-    .behaviors-heading {
-      margin-bottom: 4px;
-    }
-
-    .behaviors-photo {
-      justify-self: center;
-      max-width: min(360px, 80vw);
-      margin-right: 0;
-      margin-bottom: 0;
-    }
-  }
-
-  @media (max-width: 640px) {
     .behaviors-photo {
       display: none;
     }
 
     .behaviors-list {
-      gap: 24px;
+      gap: 14px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .behaviors-list {
+      gap: 12px;
     }
 
     .behaviors-list__item {

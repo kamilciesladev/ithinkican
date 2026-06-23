@@ -94,6 +94,8 @@ import { asset } from '../utils/asset';
     height: auto;
     border-radius: 4px;
     object-fit: cover;
+    transform-origin: 50% 15%;
+    transition: transform 0.3s ease;
   }
 
   .pdf-thumb--back {
@@ -110,8 +112,32 @@ import { asset } from '../utils/asset';
     z-index: 2;
   }
 
+  .pdf-thumbs:hover .pdf-thumb--back {
+    animation: pdf-thumb-sway-back 1.3s ease-in-out infinite;
+  }
+
+  .pdf-thumbs:hover .pdf-thumb--front {
+    animation: pdf-thumb-sway-front 1.3s ease-in-out infinite;
+    animation-delay: 0.12s;
+  }
+
+  @keyframes pdf-thumb-sway-back {
+    0%, 100% { transform: rotate(-5deg); }
+    25% { transform: rotate(-9deg); }
+    75% { transform: rotate(-1deg); }
+  }
+
+  @keyframes pdf-thumb-sway-front {
+    0%, 100% { transform: rotate(6deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(2deg); }
+  }
+
   .btn--pdf-download {
     grid-row: 3;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     width: fit-content;
     height: var(--media-control-height);
     font-family: 'Barlow Condensed', sans-serif;
@@ -126,17 +152,87 @@ import { asset } from '../utils/asset';
     color: #d7316e;
     justify-content: flex-start;
     flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transition:
+      transform 0.28s cubic-bezier(0.34, 1.4, 0.64, 1),
+      box-shadow 0.28s ease,
+      letter-spacing 0.28s ease;
+  }
+
+  .btn--pdf-download::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 35%,
+      rgba(215, 49, 110, 0.14) 50%,
+      transparent 65%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.55s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .btn--pdf-download:hover {
+    filter: none;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    letter-spacing: 0.05em;
+  }
+
+  .btn--pdf-download:hover::after {
+    transform: translateX(120%);
+  }
+
+  .btn--pdf-download:active {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
   }
 
   .btn--pdf-download .btn__icon-document {
+    position: relative;
+    z-index: 1;
     width: 1.25em;
     height: auto;
     aspect-ratio: 35 / 43;
     flex-shrink: 0;
     color: #d7316e;
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  @media (max-width: 600px) {
+  .btn--pdf-download:hover .btn__icon-document {
+    transform: translateY(2px) scale(1.06);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn--pdf-download,
+    .btn--pdf-download::after,
+    .btn--pdf-download .btn__icon-document {
+      transition: none;
+    }
+
+    .btn--pdf-download:hover,
+    .btn--pdf-download:active {
+      transform: none;
+    }
+
+    .btn--pdf-download:hover .btn__icon-document {
+      transform: none;
+    }
+
+    .btn--pdf-download:hover::after {
+      transform: translateX(-120%);
+    }
+
+    .pdf-thumbs:hover .pdf-thumb--back,
+    .pdf-thumbs:hover .pdf-thumb--front {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 640px) {
     .posters-section {
       grid-template-columns: 1fr;
       min-height: 0;
@@ -147,22 +243,7 @@ import { asset } from '../utils/asset';
     }
 
     .pdf-thumbs {
-      max-width: 240px;
-      height: 160px;
-    }
-
-    .pdf-thumb {
-      width: 160px;
-    }
-
-    .pdf-thumb--back {
-      left: 0;
-      top: 8px;
-    }
-
-    .pdf-thumb--front {
-      left: 84px;
-      top: 0;
+      display: none;
     }
   }
 </style>

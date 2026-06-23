@@ -2,10 +2,11 @@
 import { asset } from '../utils/asset';
 import TitleWithUnderline from './TitleWithUnderline.astro';
 
-const waveHeights = [
+const baseWaveHeights = [
   12, 24, 40, 32, 25, 10, 26, 21, 24, 23, 26, 40,
   31, 25, 25, 11, 26, 21, 24, 10, 27, 21, 25, 21, 24,
 ];
+const waveHeights = [...baseWaveHeights, ...baseWaveHeights, ...baseWaveHeights.slice(0, 8)];
 ---
 
 <div class="radio-section">
@@ -15,8 +16,18 @@ const waveHeights = [
     size="compact"
     underlineWidth={11}
     underlineThickness={1.35}
+    class="radio-section__title"
   >
     Spot radiowy
+    <img
+      slot="trailing"
+      class="radio-section__fm-icon"
+      src={asset('/assets/radio-fm-icon.png')}
+      alt=""
+      width="56"
+      height="53"
+      aria-hidden="true"
+    />
   </TitleWithUnderline>
   <p class="radio-section__sub">Posłuchaj spotu kampanii</p>
   <div class="audio-player" role="group" aria-label="Odtwarzacz audio">
@@ -134,6 +145,36 @@ const waveHeights = [
     border-radius: 15px;
   }
 
+  .radio-section__title {
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  .radio-section__fm-icon {
+    flex-shrink: 0;
+    width: clamp(44px, 8vw, 56px);
+    height: auto;
+    margin-left: 10px;
+    transform-origin: 50% 90%;
+    transition: transform 0.2s ease;
+  }
+
+  .radio-section__fm-icon:hover {
+    animation: radio-section-fm-sway 1.2s ease-in-out infinite;
+  }
+
+  @keyframes radio-section-fm-sway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .radio-section__fm-icon:hover {
+      animation: none;
+    }
+  }
+
   .radio-section__sub {
     font-size: 2rem;
     font-weight: 400;
@@ -147,13 +188,16 @@ const waveHeights = [
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     background: #d7316e;
     border-radius: 39px;
-    padding: 0 18px;
+    padding: 0 12px;
     height: var(--media-control-height);
     width: 100%;
     max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
   }
 
   .audio-player__audio {
@@ -164,7 +208,7 @@ const waveHeights = [
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 0 6px 0 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -173,20 +217,20 @@ const waveHeights = [
   }
 
   .audio-player__play .btn__icon--play {
-    height: 32px;
+    height: 44px;
     border: none;
   }
 
   .audio-player__pause {
     display: none;
     align-items: center;
-    gap: 7px;
-    height: 32px;
+    gap: 6px;
+    height: 30px;
   }
 
   .audio-player__pause span {
-    width: 6px;
-    height: 32px;
+    width: 5px;
+    height: 30px;
     border-radius: 999px;
     background: #fff;
   }
@@ -205,8 +249,10 @@ const waveHeights = [
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 2px;
     align-self: stretch;
     height: 100%;
+    overflow: hidden;
   }
 
   .audio-player__wave span {
@@ -240,5 +286,191 @@ const waveHeights = [
     cursor: pointer;
     padding: 6px;
     flex-shrink: 0;
+  }
+
+  /* Narrow two-column layout (radio card beside posters) */
+  @media (min-width: 901px) and (max-width: 1100px) {
+    .radio-section {
+      gap: 16px;
+      --media-card-padding-inline: 24px;
+    }
+
+    .radio-section__sub {
+      font-size: 1.5rem;
+      margin-top: -8px;
+    }
+
+    .audio-player {
+      height: 56px;
+      padding: 0 8px;
+      gap: 5px;
+      border-radius: 28px;
+    }
+
+    .audio-player__play {
+      padding: 0 4px 0 10px;
+    }
+
+    .audio-player__play .btn__icon--play {
+      height: 32px;
+    }
+
+    .audio-player__pause {
+      height: 22px;
+      gap: 5px;
+    }
+
+    .audio-player__pause span {
+      width: 4px;
+      height: 22px;
+    }
+
+    .audio-player__wave {
+      overflow: hidden;
+      gap: 1px;
+    }
+
+    .audio-player__wave span {
+      width: 1.5px;
+    }
+
+    .audio-player__time {
+      font-size: 12px;
+    }
+
+    .audio-player__stop {
+      font-size: 14px;
+      padding: 2px;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .radio-section {
+      gap: 16px;
+    }
+
+    .radio-section__title :global(.title-with-underline__decoration) {
+      width: var(--underline-width, 11rem);
+      max-width: 100%;
+    }
+
+    .radio-section__fm-icon {
+      width: 54px;
+    }
+
+    .radio-section__sub {
+      font-size: 1.5rem;
+      margin-top: -8px;
+    }
+
+    .audio-player {
+      width: 100%;
+      max-width: 100%;
+      justify-self: stretch;
+      padding: 0 8px;
+      gap: 5px;
+      height: 56px;
+      border-radius: 28px;
+    }
+
+    .audio-player__play {
+      padding: 0 4px 0 10px;
+    }
+
+    .audio-player__play .btn__icon--play {
+      height: 32px;
+    }
+
+    .audio-player__pause {
+      height: 22px;
+      gap: 5px;
+    }
+
+    .audio-player__pause span {
+      width: 4px;
+      height: 22px;
+    }
+
+    .audio-player__wave {
+      overflow: hidden;
+      justify-content: space-between;
+      gap: 1px;
+    }
+
+    .audio-player__wave span {
+      width: 1.5px;
+    }
+
+    .audio-player__time {
+      font-size: 12px;
+    }
+
+    .audio-player__stop {
+      font-size: 14px;
+      padding: 2px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .radio-section {
+      gap: 14px;
+    }
+
+    .radio-section__title :global(.title-with-underline__decoration) {
+      width: var(--underline-width, 11rem);
+      max-width: 100%;
+    }
+
+    .radio-section__fm-icon {
+      width: 50px;
+    }
+
+    .radio-section__sub {
+      font-size: 1.25rem;
+      margin-top: -6px;
+    }
+
+    .audio-player {
+      height: 48px;
+      padding: 0 8px;
+      gap: 4px;
+      border-radius: 24px;
+    }
+
+    .audio-player__play {
+      padding: 0 4px 0 8px;
+    }
+
+    .audio-player__play .btn__icon--play {
+      height: 28px;
+    }
+
+    .audio-player__pause {
+      height: 18px;
+      gap: 4px;
+    }
+
+    .audio-player__pause span {
+      width: 3px;
+      height: 18px;
+    }
+
+    .audio-player__wave {
+      justify-content: space-between;
+      gap: 1px;
+    }
+
+    .audio-player__wave span {
+      width: 1.5px;
+    }
+
+    .audio-player__time {
+      font-size: 11px;
+    }
+
+    .audio-player__stop {
+      font-size: 13px;
+      padding: 2px;
+    }
   }
 </style>

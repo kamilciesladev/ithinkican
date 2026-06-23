@@ -5,7 +5,13 @@ import SocialLinks from "./SocialLinks.astro";
 
 <header class="header">
   <a href="#top" class="header__logo-link" aria-label="Powrót na górę strony">
-    <img class="header__logo" src={asset("/assets/logo.svg")} alt="On Da Radę — logo" />
+    <img
+      class="header__logo"
+      src={asset("/assets/header-logo.png")}
+      alt="On Da Radę — logo"
+      width="96"
+      height="63"
+    />
   </a>
   <nav class="header__nav" aria-label="Nawigacja główna">
     <a href="#kampanii">O kampanii</a>
@@ -22,7 +28,7 @@ import SocialLinks from "./SocialLinks.astro";
 <style>
   .header {
     display: grid;
-    grid-template-columns: 134px 1fr auto;
+    grid-template-columns: 96px 1fr auto;
     align-items: center;
     width: 100%;
     min-height: 140px;
@@ -42,8 +48,8 @@ import SocialLinks from "./SocialLinks.astro";
   }
 
   .header__logo {
-    width: 134px;
-    height: 88px;
+    width: 96px;
+    height: auto;
     object-fit: contain;
   }
 
@@ -89,6 +95,10 @@ import SocialLinks from "./SocialLinks.astro";
 
     .header__social {
       grid-column: 2;
+    }
+
+    .header__logo {
+      width: 72px;
     }
   }
 </style>

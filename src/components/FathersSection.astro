@@ -1,8 +1,53 @@
 ---
-const exampleCards = Array.from({ length: 4 }, () => ({
-  title: 'Example title',
-  desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-}));
+import { asset } from '../utils/asset';
+import { polishTypography } from '../utils/polishTypography';
+
+const markCroninDesc = polishTypography(
+  'Ojciec wspiera syna z zespołem Downa w budowie firmy ze skarpetkami „John\'s Crazy Socks”, którą syn sam wymyślił i współtworzy. Pomysł nie był przypadkowy – John od dziecka uwielbiał kolorowe, wzorzyste skarpetki i to właśnie jego pasja stała się fundamentem biznesu. Razem stworzyli milionową firmę, która zatrudnia osoby z niepełnosprawnościami i pokazuje, że ograniczenia można zamienić w siłę.',
+);
+
+const benRyanDesc = polishTypography(
+  'Ojciec chłopca, któremu krótko po narodzinach amputowano część ręki, nie chciał czekać lat na dostęp do funkcjonalnej protezy. Wykorzystując technologię druku 3D, sam opracował i stworzył innowacyjną, hydrauliczną protezę dla swojego syna, dając początek projektowi Ambionics. Dzięki temu dziecko mogło znacznie wcześniej korzystać z funkcjonalnej kończyny, co wspierało jego rozwój i adaptację. Inicjatywa Ryana stała się inspiracją dla rodzin na całym świecie oraz przyczyniła się do rozwoju dostępnych cenowo protez dla dzieci.',
+);
+
+const exampleCards = [
+  {
+    title: 'Gordon Hartman',
+    desc: polishTypography(
+      'Były deweloper, sprzedał firmę wartą ok. 51 mln dolarów po tym, jak zobaczył, że jego córka Morgan (z niepełnosprawnościami poznawczymi i fizycznymi) jest wykluczana podczas zabawy. Zamiast czekać na zmiany systemowe, w 2010 r. w San Antonio otworzył Morgan’s Wonderland – pierwszy na świecie ultra-dostępny park rozrywki, w którym osoby z niepełnosprawnościami mogą w pełni korzystać z atrakcji. Park jest darmowy dla osób ze specjalnymi potrzebami, odwiedziły go już miliony gości i stał się wzorem dla podobnych inicjatyw na świecie. Założył też rodzinną fundację wspierającą osoby z niepełnosprawnościami',
+    ),
+    photo: '/assets/father-gordon-hartman.png',
+    moreUrl: 'https://youtu.be/75lyq0ENd4w?si=Srv8ept-NKGgHggn',
+  },
+  {
+    title: 'Vojin Kušić',
+    desc: polishTypography(
+      'Vojin Kušić zbudował dla swojej żony obracający się dom na osi. Żona narzekała, że chce zmieniać widok z okna (raz pola, raz las i rzekę), więc mąż przez 6 lat skonstruował dom, który obraca się 360° — od bardzo wolno (pełne okrążenie w 24 godziny) do szybko (22 sekundy). Dom stoi na 7-metrowej osi, napędzany silnikami elektrycznymi i starymi kołami z pojazdu wojskowego.',
+    ),
+    photo: '/assets/father-example-2.png',
+    moreUrl: 'https://youtu.be/nM2py6on2Ww?si=Ecws0bbE1NSyLoVf',
+  },
+  {
+    title: 'Wlastimil Hofman',
+    desc: polishTypography(
+      'Wlastimil Hofman uczynił swoją żonę Adę Geller wielką miłością i niezastąpioną muzą. Artysta malował ją przez ponad 50 lat, tworząc dziesiątki pięknych portretów, w tym słynny „Autoportret z przyszłą żoną”. Zaryzykował skandal towarzyski, by zbudować z nią wspólne życie, a po wojennych tułaczkach osiedlił się z Adą w ukochanej „Wlastimilówce” w Szklarskiej Porębie. Ich głęboka miłość, przyjaźń i artystyczna współpraca trwała ponad pół wieku – Ada była jego modelką, wsparciem i największym natchnieniem aż do końca. Zmarli tego samego dnia w odstępie dwóch lat – Ada w 1968, a Wlastimil w 1970 roku.',
+    ),
+    photo: '/assets/father-wlastimil-hofman.png',
+    moreUrl: 'https://artbidy.com/pl/historie/wzruszajaca-historia-milosna-wlastimila-hofmana-i-jego-zony',
+  },
+  {
+    title: 'Babu Lohar',
+    desc: polishTypography(
+      '75-letni mężczyzna, gdy jego żona doznała poważnych problemów zdrowotnych i została sparaliżowana, stanął przed dramatycznym wyborem. Nie miał pieniędzy na transport medyczny, a dostęp do opieki zdrowotnej w jego regionie był bardzo ograniczony. Zamiast bezradnie czekać, przerobił swoją rowerową rikszę tak, aby mogła przewozić leżącą żonę. Przez dziewięć dni pokonał około 300 kilometrów, pedałując przez upał, zmęczenie i trudne warunki drogowe. Spał tylko tyle, ile było konieczne, a większość czasu poświęcał na dotarcie do miejsca, gdzie jego żona mogła otrzymać pomoc medyczną.',
+    ),
+    photo: '/assets/father-babu-lohar.png',
+    moreUrl: 'https://timesofindia.indiatimes.com/life-style/people/a-75-year-old-man-cycled-300-km-with-his-wife-but-why-a-heartwarming-story-that-truly-defines-marriage/articleshow/128379711.cms',
+  },
+];
+
+const fathersSubHtml = polishTypography(
+  'Jeśli Oni potrafili zrobić te niesamowite rzeczy twój partner z pewnością da radę zrobić prace domowe czy zająć się dziećmi!',
+).replace('da radę', '<strong>da\u00A0radę</strong>');
 ---
 
 <section id="przyklady" class="section-fathers">
@@ -12,38 +57,67 @@ const exampleCards = Array.from({ length: 4 }, () => ({
         Ojcowie i partnerzy<br />z całego świata
       </h2>
       <div class="section-fathers__sub">
-        <p>Jeśli Oni potrafili zrobić </p>
-        <p>te rzeczy twój </p>
-        <p>
-          z pewnością <strong>da radę </strong>zrobić prace domowe czy zająć się
-          swoimi emocjami!
-        </p>
+        <p class="section-fathers__sub-text" lang="pl" set:html={fathersSubHtml} />
+        <img
+          class="section-fathers__intro-illustration"
+          src={asset('/assets/fathers-intro-illustration.png')}
+          alt=""
+          width="349"
+          height="436"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
       </div>
     </div>
 
     <div class="fathers-carousel" role="list" data-fathers-carousel>
       <article class="father-card" role="listitem">
-        <div class="father-card__photo" aria-label="Zdjęcie Mark Cronin"></div>
+        <div class="father-card__photo" aria-label="Zdjęcie Mark Cronin">
+          <img
+            src={asset('/assets/father-mark-cronin.png')}
+            alt=""
+            width="319"
+            height="200"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
         <h3 class="father-card__name">Mark Cronin</h3>
-        <p class="father-card__desc">
-          Ojciec wspiera syna z zespołem Downa w budowie firmy ze skarpetkami
-          „John's Crazy Socks", którą syn sam wymyślił i współtworzy. Razem
-          stworzyli milionowy biznes, który zatrudnia osoby z niepełnosprawnościami
-          i pokazuje, że ograniczenia można zamienić w siłę.
-        </p>
+        <p class="father-card__desc" lang="pl" set:html={markCroninDesc} />
+        <a
+          href="https://youtu.be/fr-IzsISsbQ?si=v9WC1AWEEUXF4jrd"
+          class="father-card__more"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Dowiedz się więcej
+          <span class="father-card__more-arrow" aria-hidden="true">→</span>
+        </a>
       </article>
 
       <article class="father-card" role="listitem">
-        <div class="father-card__photo" aria-label="Zdjęcie Ben Ryan"></div>
+        <div class="father-card__photo father-card__photo--zoom" aria-label="Zdjęcie Ben Ryan">
+          <img
+            src={asset('/assets/father-ben-ryan.png')}
+            alt=""
+            width="319"
+            height="200"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
         <h3 class="father-card__name">Ben Ryan</h3>
-        <p class="father-card__desc">
-          Ben Ryan, ojciec małego chłopca, którego ręka została amputowana tuż po
-          urodzeniu, nie chciał czekać lat na systemową pomoc i sam stworzył
-          3D-drukowaną, hydrauliczną protezę dla swojego syna w ramach projektu
-          Ambionics. Dzięki temu jego dziecko mogło dużo wcześniej używać
-          funkcjonalnej ręki, a rozwiązanie stało się inspiracją dla innych rodzin
-          i rozwojem tanich protez dla dzieci.
-        </p>
+        <p class="father-card__desc" lang="pl" set:html={benRyanDesc} />
+        <a
+          href="https://youtu.be/gmeRJUMgpfE?si=L8ymrsziBnEOvazb"
+          class="father-card__more"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Dowiedz się więcej
+          <span class="father-card__more-arrow" aria-hidden="true">→</span>
+        </a>
       </article>
 
       {exampleCards.map((card, index) => (
@@ -51,9 +125,36 @@ const exampleCards = Array.from({ length: 4 }, () => ({
           <div
             class="father-card__photo"
             aria-label={`Zdjęcie przykładu ${index + 1}`}
-          ></div>
+          >
+            {('photo' in card) && card.photo && (
+              <img
+                src={asset(card.photo)}
+                alt=""
+                width="319"
+                height="200"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+          </div>
           <h3 class="father-card__name">{card.title}</h3>
-          <p class="father-card__desc">{card.desc}</p>
+          <p class="father-card__desc" lang="pl" set:html={card.desc} />
+          {'moreUrl' in card && card.moreUrl ? (
+            <a
+              href={card.moreUrl}
+              class="father-card__more"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Dowiedz się więcej
+              <span class="father-card__more-arrow" aria-hidden="true">→</span>
+            </a>
+          ) : (
+            <button type="button" class="father-card__more">
+              Dowiedz się więcej
+              <span class="father-card__more-arrow" aria-hidden="true">→</span>
+            </button>
+          )}
         </article>
       ))}
     </div>
@@ -65,7 +166,7 @@ const exampleCards = Array.from({ length: 4 }, () => ({
     background: #f0f8fe;
     border-top: 1px solid #6ca1bf;
     border-bottom: 1px solid #6ca1bf;
-    padding: 42px 0 72px 32px;
+    padding: 42px 0 40px 32px;
     overflow: hidden;
   }
 
@@ -94,7 +195,7 @@ const exampleCards = Array.from({ length: 4 }, () => ({
   .section-fathers__sub {
     margin-top: 26px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 400;
     line-height: 1.028;
     letter-spacing: 1.5px;
@@ -102,12 +203,21 @@ const exampleCards = Array.from({ length: 4 }, () => ({
     text-align: center;
   }
 
-  .section-fathers__sub p {
+  .section-fathers__intro-illustration {
+    display: block;
+    width: min(100%, 349px);
+    height: auto;
+    margin: 12px auto 0;
+  }
+
+  .section-fathers__sub-text {
     margin: 0;
+    text-wrap: balance;
   }
 
   .section-fathers__sub strong {
     font-weight: 700;
+    white-space: nowrap;
   }
 
   .fathers-carousel {
@@ -164,16 +274,31 @@ const exampleCards = Array.from({ length: 4 }, () => ({
     height: 200px;
     background: #cde3f2;
     flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .father-card__photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .father-card__photo--zoom img {
+    transform: scale(1.28);
+    object-position: 30% 42%;
   }
 
   .father-card__name {
     font-family: 'Lobster', cursive;
-    font-size: 40px;
+    font-size: 34px;
     font-weight: 400;
-    letter-spacing: 1.5px;
-    line-height: 1.028;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
     text-align: center;
-    padding: 20px 20px 8px;
+    white-space: nowrap;
+    padding: 20px 12px 8px;
     color: #1a1a1a;
   }
 
@@ -183,9 +308,69 @@ const exampleCards = Array.from({ length: 4 }, () => ({
     font-family: 'Barlow Condensed', sans-serif;
     line-height: 1.028;
     letter-spacing: 1.5px;
-    text-align: center;
-    padding: 0 20px 24px;
+    text-align: justify;
+    hyphens: auto;
+    text-wrap: pretty;
+    padding: 0 20px 16px;
     color: #1a1a1a;
+    flex: 1;
+  }
+
+  .father-card__more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 20px 20px;
+    width: calc(100% - 40px);
+    padding: 11px 18px;
+    border: 2px solid #6ca1bf;
+    border-radius: 999px;
+    background: #f0f8fe;
+    color: #225ea1;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition:
+      background 0.22s ease,
+      border-color 0.22s ease,
+      color 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+
+  .father-card__more:hover {
+    background: #225ea1;
+    border-color: #225ea1;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(34, 94, 161, 0.22);
+  }
+
+  .father-card__more-arrow {
+    display: inline-block;
+    font-size: 1.15em;
+    line-height: 1;
+    transition: transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
+  }
+
+  .father-card__more:hover .father-card__more-arrow {
+    transform: translateX(6px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .father-card__more,
+    .father-card__more-arrow {
+      transition: none;
+    }
+
+    .father-card__more:hover .father-card__more-arrow {
+      transform: none;
+    }
   }
 
   @media (max-width: 900px) {
@@ -204,6 +389,23 @@ const exampleCards = Array.from({ length: 4 }, () => ({
       padding-right: var(--section-inset-x);
     }
 
+    .section-fathers__title {
+      font-size: 36px;
+      line-height: 1.25;
+      letter-spacing: 1px;
+    }
+
+    .section-fathers__sub {
+      margin-top: 20px;
+      font-size: 28px;
+      line-height: 1.32;
+      letter-spacing: 0.4px;
+    }
+
+    .section-fathers__intro-illustration {
+      display: none;
+    }
+
     .fathers-carousel {
       width: calc(100% + var(--section-inset-x));
       margin-left: calc(-1 * var(--section-inset-x));
@@ -219,6 +421,25 @@ const exampleCards = Array.from({ length: 4 }, () => ({
 
     .father-card {
       scroll-snap-align: start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .section-fathers {
+      padding-top: 32px;
+      padding-bottom: 56px;
+    }
+
+    .section-fathers__title {
+      font-size: 30px;
+      line-height: 1.28;
+    }
+
+    .section-fathers__sub {
+      margin-top: 16px;
+      font-size: 22px;
+      line-height: 1.38;
+      letter-spacing: 0.2px;
     }
   }
 </style>
@@ -321,5 +542,11 @@ const exampleCards = Array.from({ length: 4 }, () => ({
 
     carousel.addEventListener('pointerup', stopDragging);
     carousel.addEventListener('pointercancel', stopDragging);
+
+    carousel.querySelectorAll('.father-card__more').forEach((button) => {
+      button.addEventListener('pointerdown', (event) => {
+        event.stopPropagation();
+      });
+    });
   });
 </script>
